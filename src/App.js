@@ -20,6 +20,8 @@ function App() {
 ]
 
 const [players, setPlayers] = useState(initialPlayers)
+const [gameOver, setGameOver] = useState(false);
+const [winnerName, setWinnerName] = useState('');
 
 const getRandomAttackValue = () => {
   return Math.floor(Math.random() * 20) + 1;
@@ -35,6 +37,11 @@ updatedPlayers[defenderIndex].hitpoints -= attackValue;
 updatedPlayers[attackerIndex].turn = false;
 updatedPlayers[defenderIndex].turn = true;
 
+if ( updatedPlayers[defenderIndex].hitpoints <= 0) {
+  setGameOver(true);
+  setWinnerName(updatedPlayers[attackerIndex].name);
+}
+
 setPlayers(updatedPlayers)
 }
 
@@ -46,6 +53,7 @@ setPlayers(updatedPlayers)
       {players.map((player, index) => (
       <Player key={index} player={player} onAttack={() => handleAttack(index)} />
       ))}
+    {gameOver && <p>Game Over! Player {winnerName} wins!</p>}
     </div>
   );
 }
