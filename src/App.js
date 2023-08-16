@@ -1,23 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
+import Player from './Components/Player';
 
 function App() {
+  const player1 = {
+    name: "Me",
+    color: "orchid",
+    hitpoints: 100,
+    turn: true,
+  };
+  
+  const player2 = {
+    name: "You",
+    color: "cornflowerblue",
+    hitpoints: 100,
+    turn: false,
+  };
+  
+  const dice = 5;
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Color Battle</h1>
+      <Player player={player1} />
+      <Player player={player2} />
     </div>
   );
 }
